@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import '../index.css';
 
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Box } from '@mui/material';
 
 const slides = [
@@ -29,10 +29,13 @@ const BannerCarousel = () => {
     >
       <Swiper
         pagination={{ clickable: true, el: '.custom-pagination' }}
-        modules={[Pagination]}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        speed={1000}
+        effect='fade'
+        modules={[Pagination, Autoplay, EffectFade]}
         className="mySwiper"
         style={{
-          width: '90%',
+          width: '85%',
           height: '100%',
           borderRadius: '8px',
           overflow: 'hidden',
