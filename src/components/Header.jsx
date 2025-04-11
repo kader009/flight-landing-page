@@ -11,7 +11,7 @@ const Header = () => {
           component="img"
           src="/companylogo.webp"
           alt="Fly Far Tech Logo"
-          sx={{ height: 40 }}
+          sx={{ height: 60, width: 142, marginTop:'18px' }}
         />
 
         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
@@ -25,6 +25,7 @@ const Header = () => {
               fontWeight: 500,
               cursor: 'pointer',
               fontSize: '14px',
+              textTransform:'uppercase'
             }}
           >
             Travel Agency
@@ -41,6 +42,7 @@ const Header = () => {
               fontWeight: 500,
               cursor: 'pointer',
               fontSize: '14px',
+              textTransform:'uppercase'
             }}
           >
             Login | Sign Up
