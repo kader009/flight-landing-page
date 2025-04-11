@@ -1,4 +1,5 @@
 import BannerSection from './components/Banner'
+import RokomCarousel from './components/Carousel'
 import Header from './components/Header'
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <div>
       <Header/>
       <BannerSection/>
+      <RokomCarousel/>
     </div>
   )
 }
