@@ -1,42 +1,50 @@
-import React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Tabs,
-  Tab,
-  Box,
-  Button,
-  Typography,
-} from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 
 const Header = () => {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: '#eaf4ff', color: 'black', boxShadow: 'none' }}
+      sx={{ backgroundColor: 'transparent', color: 'black', boxShadow: 'none' }}
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        {/* Logo */}
-        <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'green' }}>
-          FLY<span style={{ color: '#00C853' }}>FAR</span> TECH
-        </Typography>
+        <Box
+          component="img"
+          src="/companylogo.webp"
+          alt="Fly Far Tech Logo"
+          sx={{ height: 40 }}
+        />
 
-        {/* Right Side Buttons */}
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ backgroundColor: '#00C853' }}
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Box
+            sx={{
+              backgroundColor: '#32D095',
+              color: '#D7E7F4',
+              px: 2.5,
+              py: 0.8,
+              borderRadius: '999px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
           >
-            TRAVEL AGENCY
-          </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            sx={{ borderColor: '#333', color: '#333' }}
+            Travel Agency
+          </Box>
+
+          <Box
+            sx={{
+              backgroundColor: '#525371',
+              border: '1px solid #333',
+              color: '#D7E7F4',
+              px: 2.5,
+              py: 0.8,
+              borderRadius: '999px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
           >
-            LOGIN | SIGN UP
-          </Button>
+            Login | Sign Up
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>
