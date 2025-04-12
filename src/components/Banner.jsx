@@ -180,13 +180,12 @@ const BannerSection = () => {
               sx={{
                 borderRadius: '30px',
                 backgroundColor:
-                  tab.label === 'FLIGHT' ? '#00C853' : 'transparent',
-                color: tab.label === 'FLIGHT' ? 'white' : '#00C853',
-                fontWeight: 'bold',
+                  tab.label === 'FLIGHT' ? '#32d095' : 'transparent',
+                color: tab.label === 'FLIGHT' ? 'white' : '#32d095',
                 px: 3,
                 '&:hover': {
                   backgroundColor:
-                    tab.label === 'FLIGHT' ? '#00b84a' : '#f0f0f0',
+                    tab.label === 'FLIGHT' ? '#32d095' : '#f0f0f0',
                 },
               }}
             >

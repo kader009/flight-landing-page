@@ -11,13 +11,11 @@ html,body{
 
 .custom-pagination {
   position: absolute;
-  bottom: 20px;
-  left: 30px;
+  right: 2rem; 
   display: flex;
   justify-content: flex-end;
   z-index: 10;
   margin-bottom: 1rem;
-  margin-right: 1rem;
 }
 
 .custom-pagination .swiper-pagination-bullet {

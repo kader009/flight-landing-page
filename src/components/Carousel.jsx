@@ -39,6 +39,7 @@ const BannerCarousel = () => {
           height: '100%',
           borderRadius: '8px',
           overflow: 'hidden',
+          position:'relative'
         }}
       >
         {slides.map((slide, index) => (
