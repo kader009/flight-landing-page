@@ -14,61 +14,75 @@ const TabGallery = () => {
   const handleTabChange = (tab) => setActiveTab(tab);
 
   return (
-    <Box sx={{ width: '100%', padding: '20px' }}>
-      {/* 🔥 Hot Deals + Tabs */}
+    <Box sx={{ maxWidth: '100%', p: 4, backgroundColor: '#F1F5F9' }}>
+      {/* Top Section */}
       <Box
         sx={{
           display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: 2,
-          mb: 4,
+          marginRight:'10rem',
+          marginLeft:'10rem',
         }}
       >
-        <Typography
-          variant="h5"
-          sx={{ fontWeight: 'bold', color: 'orange', minWidth: '100px' }}
-        >
+        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
           Hot Deals
         </Typography>
 
-<Box sx={{backgroundColor: '#32D095', padding:'15px', borderRadius:'999px', gap:'10px' }}>
-
-
-        {Object.keys(tabData).map((tab) => (
-          <Button
-            key={tab}
-            variant={activeTab === tab ? 'contained' : 'outlined'}
-            onClick={() => handleTabChange(tab)}
-            sx={{ textTransform: 'uppercase', }}
-          >
-            {tab === 'flight' && 'Flight'}
-            {tab === 'groupFare' && 'Group Fare'}
-            {tab === 'tour' && 'Tour'}
-            {tab === 'visa' && 'Visa'}
-          </Button>
-        ))}
-</Box>
+        <Box
+          sx={{
+            display: 'flex',
+            backgroundColor: '#32D095',
+            borderRadius: '999px',
+            p: 1,
+            gap: 1,
+          }}
+        >
+          {Object.keys(tabData).map((tab) => (
+            <Button
+              key={tab}
+              onClick={() => handleTabChange(tab)}
+              sx={{
+                borderRadius: '999px',
+                px: 3,
+                color: activeTab === tab ? '#fff' : '#000',
+                backgroundColor: activeTab === tab ? '#3D2F7D' : 'transparent',
+                fontWeight: 500,
+                textTransform: 'uppercase',
+                '&:hover': {
+                  backgroundColor: activeTab === tab ? '#3D2F7D' : '#ffffff30',
+                },
+              }}
+            >
+              {tab === 'flight' && 'FLIGHT'}
+              {tab === 'groupFare' && 'GROUP FARE'}
+              {tab === 'tour' && 'TOUR'}
+              {tab === 'visa' && 'VISA'}
+            </Button>
+          ))}
+        </Box>
       </Box>
 
-      {/* Images */}
+      {/* Image Grid */}
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: 2,
+          gap: 3,
           justifyContent: 'center',
+          mt: 4,
         }}
       >
         {tabData[activeTab].map((img, index) => (
           <Box
             key={index}
             sx={{
-              width: '300px',
-              height: '200px',
-              borderRadius: '8px',
+              width: { xs: '100%', sm: '320px', md: '370px' },
+              height: '215px',
               overflow: 'hidden',
-              boxShadow: 2,
+              backgroundColor: '#fff',
             }}
           >
             <img
