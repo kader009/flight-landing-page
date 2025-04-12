@@ -7,6 +7,7 @@ import {
   Radio,
   FormControlLabel,
   RadioGroup,
+  Stack,
 } from '@mui/material';
 import { useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -18,9 +19,30 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 const BannerSection = () => {
   const [tripType, setTripType] = useState('round-way');
+  const [dates, setDates] = useState({
+    from1: '2025-04-13',
+    to1: '2025-04-15',
+    from2: '2025-04-20',
+    to2: '2025-04-25',
+  });
+
+  const [passengers, setPassengers] = useState({
+    adult: '1',
+    child: '0',
+    infant: '0',
+  });
+  const [flightClass, setFlightClass] = useState('Economy');
 
   const handleTripTypeChange = (event) => {
     setTripType(event.target.value);
+  };
+
+  const handleDateChange = (key, value) => {
+    setDates((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handlePassengerChange = (type, value) => {
+    setPassengers((prev) => ({ ...prev, [type]: value }));
   };
 
   const renderFlightForm = () => {
@@ -28,9 +50,22 @@ const BannerSection = () => {
       case 'one-way':
         return (
           <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
-            <FlightInput label="FROM" code="DAC" location="Hazrat Shahjalal Intl Airport (DAC)" date="13 Apr 25" />
+            <FlightInput
+              label="FROM"
+              code="DAC"
+              location="Hazrat Shahjalal Intl Airport (DAC)"
+              date={dates.from1}
+              onDateChange={(val) => handleDateChange('from1', val)}
+            />
             <CenterFlightIcon />
-            <FlightInput label="TO" code="CXB" location="Cox's Bazar Airport (CXB)" date="15 Apr 25" hideReturnDate />
+            <FlightInput
+              label="TO"
+              code="CXB"
+              location="Cox's Bazar Airport (CXB)"
+              date={dates.to1}
+              onDateChange={(val) => handleDateChange('to1', val)}
+              hideReturnDate
+            />
           </Box>
         );
 
@@ -38,14 +73,38 @@ const BannerSection = () => {
         return (
           <Box display="flex" flexDirection="column" gap={2}>
             <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
-              <FlightInput label="FROM" code="DAC" location="Hazrat Shahjalal Intl Airport (DAC)" date="13 Apr 25" />
+              <FlightInput
+                label="FROM"
+                code="DAC"
+                location="Hazrat Shahjalal Intl Airport (DAC)"
+                date={dates.from1}
+                onDateChange={(val) => handleDateChange('from1', val)}
+              />
               <CenterFlightIcon />
-              <FlightInput label="TO" code="CXB" location="Cox's Bazar Airport (CXB)" date="15 Apr 25" />
+              <FlightInput
+                label="TO"
+                code="CXB"
+                location="Cox's Bazar Airport (CXB)"
+                date={dates.to1}
+                onDateChange={(val) => handleDateChange('to1', val)}
+              />
             </Box>
             <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
-              <FlightInput label="FROM" code="CXB" location="Cox's Bazar Airport (CXB)" date="20 Apr 25" />
+              <FlightInput
+                label="FROM"
+                code="CXB"
+                location="Cox's Bazar Airport (CXB)"
+                date={dates.from2}
+                onDateChange={(val) => handleDateChange('from2', val)}
+              />
               <CenterFlightIcon />
-              <FlightInput label="TO" code="DAC" location="Hazrat Shahjalal Intl Airport (DAC)" date="25 Apr 25" />
+              <FlightInput
+                label="TO"
+                code="DAC"
+                location="Hazrat Shahjalal Intl Airport (DAC)"
+                date={dates.to2}
+                onDateChange={(val) => handleDateChange('to2', val)}
+              />
             </Box>
           </Box>
         );
@@ -54,26 +113,48 @@ const BannerSection = () => {
       default:
         return (
           <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
-            <FlightInput label="FROM" code="DAC" location="Hazrat Shahjalal Intl Airport (DAC)" date="13 Apr 25" />
+            <FlightInput
+              label="FROM"
+              code="DAC"
+              location="Hazrat Shahjalal Intl Airport (DAC)"
+              date={dates.from1}
+              onDateChange={(val) => handleDateChange('from1', val)}
+            />
             <CenterFlightIcon />
-            <FlightInput label="TO" code="CXB" location="Cox's Bazar Airport (CXB)" date="15 Apr 25" />
+            <FlightInput
+              label="TO"
+              code="CXB"
+              location="Cox's Bazar Airport (CXB)"
+              date={dates.to1}
+              onDateChange={(val) => handleDateChange('to1', val)}
+            />
           </Box>
         );
     }
   };
 
+  const handleSearch = () => {
+    const searchParams = {
+      tripType,
+      dates,
+      passengers,
+      flightClass,
+    };
+    console.log('Search Parameters:', searchParams);
+  };
+
   return (
     <Box
       sx={{
-        backgroundImage: `url('/mainbannerimg.webp')`,
+        backgroundImage: 'url("/mainbannerimg.webp")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: '12px',
         p: 4,
-        m: '1rem 2rem',
+        mx: 'auto',
+        maxWidth: '1400px',
       }}
     >
-      {/* Tab Group */}
       <Box display="flex" justifyContent="center" mb={3}>
         <Box
           sx={{
@@ -86,7 +167,7 @@ const BannerSection = () => {
             flexWrap: 'wrap',
           }}
         >
-          {[ 
+          {[
             { label: 'FLIGHT', icon: <FlightIcon /> },
             { label: 'HOTEL', icon: <HotelIcon /> },
             { label: 'TOUR', icon: <TourIcon /> },
@@ -98,12 +179,14 @@ const BannerSection = () => {
               startIcon={tab.icon}
               sx={{
                 borderRadius: '30px',
-                backgroundColor: tab.label === 'FLIGHT' ? '#00C853' : 'transparent',
+                backgroundColor:
+                  tab.label === 'FLIGHT' ? '#00C853' : 'transparent',
                 color: tab.label === 'FLIGHT' ? 'white' : '#00C853',
                 fontWeight: 'bold',
                 px: 3,
                 '&:hover': {
-                  backgroundColor: tab.label === 'FLIGHT' ? '#00b84a' : '#f0f0f0',
+                  backgroundColor:
+                    tab.label === 'FLIGHT' ? '#00b84a' : '#f0f0f0',
                 },
               }}
             >
@@ -113,25 +196,18 @@ const BannerSection = () => {
         </Box>
       </Box>
 
-      {/* Card Container */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 3,
-        }}
-      >
-        {/* Left Flight Form */}
+      <Stack direction={{ xs: 'column', md: 'row' }} style={{marginLeft:'3rem', marginRight:'3rem'}}>
         <Box
           sx={{
             backgroundColor: 'white',
             borderRadius: '16px',
             p: 3,
-            flex: 2, // 2/3 width
+            flexGrow: 1,
+            flexBasis: tripType === 'multi-city' ? '65%' : '55%',
+            transition: 'flex-basis 0.3s ease',
             minWidth: 300,
           }}
         >
-          {/* Trip Type */}
           <RadioGroup
             row
             value={tripType}
@@ -154,50 +230,71 @@ const BannerSection = () => {
               label={<Typography sx={{ color: '#00C853', fontWeight: 'bold' }}>MULTI-CITY</Typography>}
             />
           </RadioGroup>
-
-          {/* Dynamic Flight Inputs */}
           {renderFlightForm()}
         </Box>
 
-        {/* Right Passenger Filter */}
         <Box
           sx={{
             backgroundColor: '#fff',
             borderRadius: '16px',
             p: 3,
-            flex: 1, // 1/3 width
+            flexBasis: tripType === 'multi-city' ? '30%' : '40%',
+            transition: 'flex-basis 0.3s ease',
             minWidth: 250,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
           }}
         >
-          {/* Row for ADULT / CHILD / INFANT */}
-          <Box display="flex" gap={2} flexWrap="wrap">
-            <TextField select fullWidth size="small" defaultValue="1" sx={{ flex: 1 }}>
+          <Box display="flex" gap={2} flexWrap="wrap" mb={2}>
+            <TextField
+              select
+              fullWidth
+              size="small"
+              value={passengers.adult}
+              onChange={(e) => handlePassengerChange('adult', e.target.value)}
+              sx={{ flex: 1 }}
+            >
               <MenuItem value="1">1 ADULT</MenuItem>
               <MenuItem value="2">2 ADULT</MenuItem>
             </TextField>
-            <TextField select fullWidth size="small" defaultValue="0" sx={{ flex: 1 }}>
+            <TextField
+              select
+              fullWidth
+              size="small"
+              value={passengers.child}
+              onChange={(e) => handlePassengerChange('child', e.target.value)}
+              sx={{ flex: 1 }}
+            >
               <MenuItem value="0">0 CHILD</MenuItem>
               <MenuItem value="1">1 CHILD</MenuItem>
             </TextField>
-            <TextField select fullWidth size="small" defaultValue="0" sx={{ flex: 1 }}>
+            <TextField
+              select
+              fullWidth
+              size="small"
+              value={passengers.infant}
+              onChange={(e) => handlePassengerChange('infant', e.target.value)}
+              sx={{ flex: 1 }}
+            >
               <MenuItem value="0">0 INFANT</MenuItem>
               <MenuItem value="1">1 INFANT</MenuItem>
             </TextField>
           </Box>
 
-          {/* Class Selection */}
-          <TextField select size="small" fullWidth defaultValue="Economy">
+          <TextField
+            select
+            size="small"
+            fullWidth
+            value={flightClass}
+            onChange={(e) => setFlightClass(e.target.value)}
+            sx={{ mb: 2 }}
+          >
             <MenuItem value="Economy">Economy</MenuItem>
             <MenuItem value="Business">Business</MenuItem>
           </TextField>
 
-          {/* Search Button */}
           <Button
             variant="contained"
             fullWidth
+            onClick={handleSearch}
             sx={{
               backgroundColor: '#00C853',
               color: '#fff',
@@ -210,13 +307,12 @@ const BannerSection = () => {
             SEARCH FOR FLIGHT
           </Button>
         </Box>
-      </Box>
+      </Stack>
     </Box>
   );
 };
 
-// Component for individual "From" / "To" input section
-const FlightInput = ({ label, code, location, date, hideReturnDate }) => (
+const FlightInput = ({ label, code, location, date, onDateChange, hideReturnDate }) => (
   <Box flex={1} minWidth={200}>
     <Typography variant="caption" color="textSecondary">
       {label}
@@ -239,17 +335,18 @@ const FlightInput = ({ label, code, location, date, hideReturnDate }) => (
         <CalendarMonthIcon color="success" />
         <TextField
           size="small"
+          type="date"
           fullWidth
           value={date}
-          InputProps={{ readOnly: true }}
+          onChange={(e) => onDateChange(e.target.value)}
           sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
+          InputLabelProps={{ shrink: true }}
         />
       </Box>
     )}
   </Box>
 );
 
-// Center icon between From - To
 const CenterFlightIcon = () => (
   <Box display="flex" alignItems="center" justifyContent="center" minWidth={60}>
     <img src="/planeicon.png" alt="plane" style={{ height: 60 }} />
