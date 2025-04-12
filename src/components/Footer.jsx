@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, Grid, Typography, TextField, IconButton, InputAdornment } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import { Facebook, Instagram, WhatsApp, Send } from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -7,10 +13,21 @@ import PhoneIcon from "@mui/icons-material/Phone";
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "#24D1A5", color: "white", p: 4 }}>
-      <Grid container spacing={4}>
+    <Box sx={{ bgcolor: "#24D1A5", color: "white", py: 6 }}>
+      {/* Container */}
+      <Box
+        sx={{
+          maxWidth: "1200px",
+          mx: "auto",
+          px: 2,
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          gap: 4,
+        }}
+      >
         {/* Need Help */}
-        <Grid item xs={12} md={3}>
+        <Box flex={1} minWidth={250}>
           <Typography variant="h6" gutterBottom>
             Need Help
           </Typography>
@@ -33,10 +50,10 @@ const Footer = () => {
             <Instagram />
             <WhatsApp />
           </Box>
-        </Grid>
+        </Box>
 
         {/* Discover */}
-        <Grid item xs={12} md={3}>
+        <Box flex={1} minWidth={250}>
           <Typography variant="h6" gutterBottom>
             Discover
           </Typography>
@@ -48,31 +65,71 @@ const Footer = () => {
             "Privacy Policy",
             "Refund & Cancellation Policy",
           ].map((text, index) => (
-            <Typography key={index} mb={1}>{text}</Typography>
+            <Typography key={index} mb={1}>
+              {text}
+            </Typography>
           ))}
-        </Grid>
+        </Box>
 
         {/* Certification */}
-        <Grid item xs={12} md={3}>
+        <Box flex={1} minWidth={250}>
           <Typography variant="h6" gutterBottom>
             Certification
           </Typography>
-          <Box display="flex" flexDirection="column" gap={1}>
-            <img src="/download.png" alt="IATA" width={100} />
-            <img src="/download1.png" alt="PATA" width={100} />
-            <img src="/download2.png" alt="ATAB" width={100} />
-            <img src="/download3.png" alt="TOUF" width={100} />
-            <img src="/download4.png" alt="Biman" width={100} />
+
+          {/* First Row - 3 Images */}
+          <Box display="flex" gap={2} mb={2}>
+            {[
+              { src: "/download.png", alt: "IATA" },
+              { src: "/download2.png", alt: "ATAB" },
+              { src: "/download3.png", alt: "TOUF" },
+            ].map((item, i) => (
+              <Box
+                key={i}
+                sx={{
+                  borderRadius: '3px',
+                  px: 2,
+                  py: 1,
+                  width: "124px",
+                  textAlign: "center",
+                  color: "#000",
+                }}
+              >
+                <img src={item.src} alt={item.alt} width="100%" />
+              </Box>
+            ))}
           </Box>
-        </Grid>
+
+          {/* Second Row - 2 Images */}
+          <Box display="flex" gap={2}>
+            {[
+              { src: "/download1.png", alt: "PATA" },
+              { src: "/download4.png", alt: "Biman" },
+            ].map((item, i) => (
+              <Box
+                key={i}
+                sx={{
+                  borderRadius: '3px',
+                  px: 2,
+                  py: 1,
+                  width: "124px",
+                  textAlign: "center",
+                  color: "#000",
+                }}
+              >
+                <img src={item.src} alt={item.alt} width="100%" />
+              </Box>
+            ))}
+          </Box>
+        </Box>
 
         {/* Get In Touch */}
-        <Grid item xs={12} md={3}>
+        <Box flex={1} minWidth={250}>
           <Typography variant="h6" gutterBottom>
             Get In Touch
           </Typography>
           <Typography mb={2}>
-            Question or feedback we would love to hear from you
+            Question or feedback? We would love to hear from you.
           </Typography>
           <TextField
             fullWidth
@@ -89,18 +146,22 @@ const Footer = () => {
               ),
             }}
           />
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {/* Payment Section */}
       <Box mt={6} textAlign="center">
-      
-        <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
-            <img
-              src={`/paymentgetwayimg.webp`}
-              alt={`paymentimg`}
-              style={{ objectFit: "cover", height:'10%', width:'70%' }}
-            />
+        <Box display="flex" justifyContent="center">
+          <img
+            src="/paymentgetwayimg.webp"
+            alt="payment"
+            style={{
+              objectFit: "contain",
+              maxWidth: "600px",
+              width: "90%",
+              height: "auto",
+            }}
+          />
         </Box>
 
         <Typography mt={4}>
