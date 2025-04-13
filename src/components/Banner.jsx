@@ -159,12 +159,13 @@ const BannerSection = () => {
         <Box
           sx={{
             display: 'flex',
-            gap: 2,
+            gap: '20px',
             backgroundColor: 'white',
-            borderRadius: '30px',
+            borderRadius: '999px',
             p: 1,
-            boxShadow: '0px 2px 10px rgba(0,0,0,0.1)',
             flexWrap: 'wrap',
+            width: 'fit-content',
+            mx: 'auto',
           }}
         >
           {[
@@ -179,13 +180,18 @@ const BannerSection = () => {
               startIcon={tab.icon}
               sx={{
                 borderRadius: '30px',
-                backgroundColor:
-                  tab.label === 'FLIGHT' ? '#32d095' : 'transparent',
+                backgroundColor: tab.label === 'FLIGHT' ? '#32d095' : 'white',
                 color: tab.label === 'FLIGHT' ? 'white' : '#32d095',
                 px: 3,
+                py: 0.5,
+                minWidth: '110px',
+                height: '36px',
+                fontSize: '0.75rem',
+                boxShadow: tab.label === 'FLIGHT' ? 2 : 0,
+                border: '1px solid #32d095',
                 '&:hover': {
-                  backgroundColor:
-                    tab.label === 'FLIGHT' ? '#32d095' : '#f0f0f0',
+                  backgroundColor: tab.label === 'FLIGHT' ? '#32d095' : '#f4f4f4',
+                  boxShadow: 1,
                 },
               }}
             >
@@ -195,7 +201,7 @@ const BannerSection = () => {
         </Box>
       </Box>
 
-      <Stack direction={{ xs: 'column', md: 'row' }} style={{marginLeft:'3rem', marginRight:'3rem'}}>
+      <Stack direction={{ xs: 'column', md: 'row' }} style={{ marginLeft: '3rem', marginRight: '3rem' }}>
         <Box
           sx={{
             backgroundColor: 'white',
@@ -211,24 +217,30 @@ const BannerSection = () => {
             row
             value={tripType}
             onChange={handleTripTypeChange}
-            sx={{ justifyContent: 'center', mb: 2 }}
+            sx={{
+              mb: 2,
+              justifyContent: 'flex-start',
+              gap: 2,
+              flexWrap: 'wrap',
+            }}
           >
             <FormControlLabel
               value="round-way"
-              control={<Radio sx={{ color: '#00C853' }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold' }}>ROUND-WAY</Typography>}
+              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
+              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>ROUND-WAY</Typography>}
             />
             <FormControlLabel
               value="one-way"
-              control={<Radio sx={{ color: '#00C853' }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold' }}>ONE-WAY</Typography>}
+              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
+              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>ONE-WAY</Typography>}
             />
             <FormControlLabel
               value="multi-city"
-              control={<Radio sx={{ color: '#00C853' }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold' }}>MULTI-CITY</Typography>}
+              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
+              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>MULTI-CITY</Typography>}
             />
           </RadioGroup>
+
           {renderFlightForm()}
         </Box>
 
@@ -251,8 +263,9 @@ const BannerSection = () => {
               onChange={(e) => handlePassengerChange('adult', e.target.value)}
               sx={{ flex: 1 }}
             >
-              <MenuItem value="1">1 ADULT</MenuItem>
-              <MenuItem value="2">2 ADULT</MenuItem>
+              {[1, 2, 3, 4, 5].map((v) => (
+                <MenuItem key={v} value={v}>{v} ADULT</MenuItem>
+              ))}
             </TextField>
             <TextField
               select
@@ -262,8 +275,9 @@ const BannerSection = () => {
               onChange={(e) => handlePassengerChange('child', e.target.value)}
               sx={{ flex: 1 }}
             >
-              <MenuItem value="0">0 CHILD</MenuItem>
-              <MenuItem value="1">1 CHILD</MenuItem>
+              {[0, 1, 2, 3, 4, 5].map((v) => (
+                <MenuItem key={v} value={v}>{v} CHILD</MenuItem>
+              ))}
             </TextField>
             <TextField
               select
@@ -273,8 +287,9 @@ const BannerSection = () => {
               onChange={(e) => handlePassengerChange('infant', e.target.value)}
               sx={{ flex: 1 }}
             >
-              <MenuItem value="0">0 INFANT</MenuItem>
-              <MenuItem value="1">1 INFANT</MenuItem>
+              {[0, 1, 2, 3, 4].map((v) => (
+                <MenuItem key={v} value={v}>{v} INFANT</MenuItem>
+              ))}
             </TextField>
           </Box>
 
