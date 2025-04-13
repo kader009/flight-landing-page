@@ -188,10 +188,8 @@ const BannerSection = () => {
                 height: '36px',
                 fontSize: '0.75rem',
                 boxShadow: tab.label === 'FLIGHT' ? 2 : 0,
-                border: '1px solid #32d095',
                 '&:hover': {
                   backgroundColor: tab.label === 'FLIGHT' ? '#32d095' : '#f4f4f4',
-                  boxShadow: 1,
                 },
               }}
             >
@@ -303,6 +301,7 @@ const BannerSection = () => {
           >
             <MenuItem value="Economy">Economy</MenuItem>
             <MenuItem value="Business">Business</MenuItem>
+            <MenuItem value="First-class">First Class</MenuItem>
           </TextField>
 
           <Button
@@ -310,11 +309,11 @@ const BannerSection = () => {
             fullWidth
             onClick={handleSearch}
             sx={{
-              backgroundColor: '#00C853',
+              backgroundColor: '#32d095',
               color: '#fff',
               fontWeight: 'bold',
               '&:hover': {
-                backgroundColor: '#00b84a',
+                backgroundColor: '#32d095',
               },
             }}
           >

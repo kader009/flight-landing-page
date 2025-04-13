@@ -33,7 +33,6 @@ const BannerCarousel = () => {
         speed={1000}
         effect='fade'
         modules={[Pagination, Autoplay, EffectFade]}
-        className="mySwiper"
         style={{
           width: '85%',
           height: '100%',
