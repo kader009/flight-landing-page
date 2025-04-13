@@ -16,6 +16,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 import HotelIcon from '@mui/icons-material/Hotel';
 import TourIcon from '@mui/icons-material/Tour';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import { bangladeshAirports } from '../airport';
 
 const BannerSection = () => {
   const [tripType, setTripType] = useState('round-way');
@@ -49,7 +50,12 @@ const BannerSection = () => {
     switch (tripType) {
       case 'one-way':
         return (
-          <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
+          <Box
+            display="flex"
+            gap={4}
+            flexWrap="wrap"
+            justifyContent="space-between"
+          >
             <FlightInput
               label="FROM"
               code="DAC"
@@ -72,7 +78,12 @@ const BannerSection = () => {
       case 'multi-city':
         return (
           <Box display="flex" flexDirection="column" gap={2}>
-            <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
+            <Box
+              display="flex"
+              gap={4}
+              flexWrap="wrap"
+              justifyContent="space-between"
+            >
               <FlightInput
                 label="FROM"
                 code="DAC"
@@ -89,7 +100,12 @@ const BannerSection = () => {
                 onDateChange={(val) => handleDateChange('to1', val)}
               />
             </Box>
-            <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
+            <Box
+              display="flex"
+              gap={4}
+              flexWrap="wrap"
+              justifyContent="space-between"
+            >
               <FlightInput
                 label="FROM"
                 code="CXB"
@@ -112,7 +128,12 @@ const BannerSection = () => {
       case 'round-way':
       default:
         return (
-          <Box display="flex" gap={4} flexWrap="wrap" justifyContent="space-between">
+          <Box
+            display="flex"
+            gap={4}
+            flexWrap="wrap"
+            justifyContent="space-between"
+          >
             <FlightInput
               label="FROM"
               code="DAC"
@@ -148,21 +169,21 @@ const BannerSection = () => {
       sx={{
         backgroundImage: 'url("/mainbannerimg.webp")',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
         borderRadius: '12px',
         p: 4,
         mx: 'auto',
-        maxWidth: '1400px',
+        maxWidth: '1290px',
       }}
     >
       <Box display="flex" justifyContent="center" mb={3}>
         <Box
           sx={{
             display: 'flex',
-            gap: '20px',
+            gap: '23px',
             backgroundColor: 'white',
             borderRadius: '999px',
-            p: 1,
+            px: '7px',
+            py: '4px',
             flexWrap: 'wrap',
             width: 'fit-content',
             mx: 'auto',
@@ -184,12 +205,13 @@ const BannerSection = () => {
                 color: tab.label === 'FLIGHT' ? 'white' : '#32d095',
                 px: 3,
                 py: 0.5,
-                minWidth: '110px',
-                height: '36px',
+                minWidth: '120px',
+                height: '34px',
                 fontSize: '0.75rem',
                 boxShadow: tab.label === 'FLIGHT' ? 2 : 0,
                 '&:hover': {
-                  backgroundColor: tab.label === 'FLIGHT' ? '#32d095' : '#f4f4f4',
+                  backgroundColor:
+                    tab.label === 'FLIGHT' ? '#32d095' : '#f4f4f4',
                 },
               }}
             >
@@ -199,7 +221,10 @@ const BannerSection = () => {
         </Box>
       </Box>
 
-      <Stack direction={{ xs: 'column', md: 'row' }} style={{ marginLeft: '3rem', marginRight: '3rem' }}>
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        style={{ marginLeft: '3rem', marginRight: '3rem' }}
+      >
         <Box
           sx={{
             backgroundColor: 'white',
@@ -224,18 +249,40 @@ const BannerSection = () => {
           >
             <FormControlLabel
               value="round-way"
-              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>ROUND-WAY</Typography>}
+              control={
+                <Radio
+                  sx={{
+                    color: '#00C853',
+                    p: 0.5,
+                    '&.Mui-checked': {
+                      color: '#00C853',
+                    },
+                  }}
+                />
+              }
+              label={
+                <Typography sx={{ color: '#32d095', fontSize: '0.8rem' }}>
+                  ROUND-WAY
+                </Typography>
+              }
             />
             <FormControlLabel
               value="one-way"
-              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>ONE-WAY</Typography>}
+              control={<Radio sx={{ color: '#32d095', p: 0.5 }} />}
+              label={
+                <Typography sx={{ color: '#32d095', fontSize: '0.8rem' }}>
+                  ONE-WAY
+                </Typography>
+              }
             />
             <FormControlLabel
               value="multi-city"
-              control={<Radio sx={{ color: '#00C853', p: 0.5 }} />}
-              label={<Typography sx={{ color: '#00C853', fontWeight: 'bold', fontSize: '0.8rem' }}>MULTI-CITY</Typography>}
+              control={<Radio sx={{ color: '#32d095', p: 0.5 }} />}
+              label={
+                <Typography sx={{ color: '#32d095', fontSize: '0.8rem' }}>
+                  MULTI-CITY
+                </Typography>
+              }
             />
           </RadioGroup>
 
@@ -246,23 +293,41 @@ const BannerSection = () => {
           sx={{
             backgroundColor: '#fff',
             borderRadius: '16px',
-            p: 3,
+            p: 2,
             flexBasis: tripType === 'multi-city' ? '30%' : '40%',
             transition: 'flex-basis 0.3s ease',
-            minWidth: 250,
+            width: 250,
           }}
         >
-          <Box display="flex" gap={2} flexWrap="wrap" mb={2}>
+          <Box display="flex" gap={1} flexWrap="wrap" mb={2}>
             <TextField
               select
               fullWidth
               size="small"
               value={passengers.adult}
               onChange={(e) => handlePassengerChange('adult', e.target.value)}
-              sx={{ flex: 1 }}
+              sx={{
+                flex: 1,
+                '& .MuiInputBase-root': {
+                  height: '32px',
+                  width: '120px',
+                  padding: '2px 8px',
+                  fontSize: '0.75rem',
+                  backgroundColor: '#d7e7f4',
+                  '& fieldset': {
+                    border: 'none',
+                  },
+                },
+              }}
             >
               {[1, 2, 3, 4, 5].map((v) => (
-                <MenuItem key={v} value={v}>{v} ADULT</MenuItem>
+                <MenuItem
+                  sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+                  key={v}
+                  value={v}
+                >
+                  {v} ADULT
+                </MenuItem>
               ))}
             </TextField>
             <TextField
@@ -271,10 +336,24 @@ const BannerSection = () => {
               size="small"
               value={passengers.child}
               onChange={(e) => handlePassengerChange('child', e.target.value)}
-              sx={{ flex: 1 }}
+              sx={{
+                flex: 1,
+                '& .MuiInputBase-root': {
+                  height: '32px',
+                  width: '120px',
+                  padding: '2px 8px',
+                  fontSize: '0.75rem',
+                  backgroundColor: '#d7e7f4',
+                  '& fieldset': {
+                    border: 'none',
+                  },
+                },
+              }}
             >
               {[0, 1, 2, 3, 4, 5].map((v) => (
-                <MenuItem key={v} value={v}>{v} CHILD</MenuItem>
+                <MenuItem key={v} value={v}>
+                  {v} CHILD
+                </MenuItem>
               ))}
             </TextField>
             <TextField
@@ -283,10 +362,24 @@ const BannerSection = () => {
               size="small"
               value={passengers.infant}
               onChange={(e) => handlePassengerChange('infant', e.target.value)}
-              sx={{ flex: 1 }}
+              sx={{
+                flex: 1,
+                '& .MuiInputBase-root': {
+                  height: '32px',
+                  width: '120px',
+                  padding: '2px 8px',
+                  fontSize: '0.75rem',
+                  backgroundColor: '#d7e7f4',
+                  '& fieldset': {
+                    border: 'none',
+                  },
+                },
+              }}
             >
               {[0, 1, 2, 3, 4].map((v) => (
-                <MenuItem key={v} value={v}>{v} INFANT</MenuItem>
+                <MenuItem key={v} value={v}>
+                  {v} INFANT
+                </MenuItem>
               ))}
             </TextField>
           </Box>
@@ -325,7 +418,14 @@ const BannerSection = () => {
   );
 };
 
-const FlightInput = ({ label, code, location, date, onDateChange, hideReturnDate }) => (
+const FlightInput = ({
+  label,
+  code,
+  location,
+  date,
+  onDateChange,
+  hideReturnDate,
+}) => (
   <Box flex={1} minWidth={200}>
     <Typography variant="caption" color="textSecondary">
       {label}
