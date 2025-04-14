@@ -1,55 +1,55 @@
-// src/components/FlightInput.js
-import { useState } from 'react';
-import { TextField, Typography, Box, MenuItem } from '@mui/material';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { bangladeshAirports } from '../airport.js';
+import React, { useState } from 'react';
+import { Autocomplete, TextField, Typography, Box } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import bangladeshAirports from '@/data/bangladeshAirports';
 
-const FlightInput = ({ label, value, onChange, date, onDateChange, hideReturnDate }) => {
-  const [searchText, setSearchText] = useState('');
+const FlightInput = ({ label, date, onDateChange }) => {
+  const [selectedAirport, setSelectedAirport] = useState(null);
 
-  const filteredAirports = bangladeshAirports.filter((airport) =>
-    airport.name.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const handleAirportChange = (event, value) => {
+    setSelectedAirport(value);
+  };
 
   return (
-    <Box flex={1} minWidth={200}>
-      <Typography variant="caption" color="textSecondary">
-        {label}
-      </Typography>
-      <Box display="flex" alignItems="center" gap={1} mt={1}>
-        <LocationOnIcon color="success" />
-        <TextField
-          select
-          size="small"
-          fullWidth
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onInput={(e) => setSearchText(e.target.value)}
-          sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
-        >
-          {filteredAirports.map((airport) => (
-            <MenuItem key={airport.code} value={airport.name}>
-              {airport.name}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Box>
+    <Box
+      sx={{
+        flex: 1,
+        minWidth: 250,
+        maxWidth: 300,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1.5,
+        p: 1,
+      }}
+    >
+      <Typography variant="caption">{label}</Typography>
 
-      {!hideReturnDate && (
-        <Box display="flex" alignItems="center" gap={1} mt={1}>
-          <CalendarMonthIcon color="success" />
-          <TextField
-            size="small"
-            type="date"
-            fullWidth
-            value={date}
-            onChange={(e) => onDateChange(e.target.value)}
-            sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
-            InputLabelProps={{ shrink: true }}
-          />
+      <Autocomplete
+        options={bangladeshAirports}
+        getOptionLabel={(option) => `${option.code} - ${option.name}`}
+        value={selectedAirport}
+        onChange={handleAirportChange}
+        renderInput={(params) => (
+          <TextField {...params} label="Select Airport" variant="outlined" />
+        )}
+        isOptionEqualToValue={(option, value) => option.code === value?.code}
+      />
+
+      {selectedAirport && (
+        <Box>
+          <Typography variant="body2" fontWeight="bold">
+            {selectedAirport.code}
+          </Typography>
+          <Typography variant="body2">{selectedAirport.name}</Typography>
         </Box>
       )}
+
+      <DatePicker
+        label="Date"
+        value={date}
+        onChange={onDateChange}
+        sx={{ width: '100%' }}
+      />
     </Box>
   );
 };

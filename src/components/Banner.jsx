@@ -16,7 +16,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 import HotelIcon from '@mui/icons-material/Hotel';
 import TourIcon from '@mui/icons-material/Tour';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import { bangladeshAirports } from '../airport';
+// import { bangladeshAirports } from '../airport';
 
 const BannerSection = () => {
   const [tripType, setTripType] = useState('round-way');
@@ -54,7 +54,8 @@ const BannerSection = () => {
             display="flex"
             gap={4}
             flexWrap="wrap"
-            justifyContent="space-between"
+            justifyContent="center"
+            alignItems='center'
           >
             <FlightInput
               label="FROM"
@@ -231,7 +232,7 @@ const BannerSection = () => {
             borderRadius: '16px',
             p: 3,
             flexGrow: 1,
-            flexBasis: tripType === 'multi-city' ? '65%' : '55%',
+            flexBasis: tripType === 'multi-city' ? '50%' : '50%',
             transition: 'flex-basis 0.3s ease',
             minWidth: 300,
           }}
@@ -261,7 +262,7 @@ const BannerSection = () => {
                 />
               }
               label={
-                <Typography sx={{ color: '#32d095', fontSize: '0.8rem' }}>
+                <Typography sx={{ color: '#32d095', fontSize: '0.8rem',}}>
                   ROUND-WAY
                 </Typography>
               }
@@ -294,9 +295,8 @@ const BannerSection = () => {
             backgroundColor: '#fff',
             borderRadius: '16px',
             p: 2,
-            flexBasis: tripType === 'multi-city' ? '30%' : '40%',
+            flexBasis: tripType === 'multi-city' ? '32%' : '32%',
             transition: 'flex-basis 0.3s ease',
-            width: 250,
           }}
         >
           <Box display="flex" gap={1} flexWrap="wrap" mb={2}>
@@ -310,7 +310,7 @@ const BannerSection = () => {
                 flex: 1,
                 '& .MuiInputBase-root': {
                   height: '32px',
-                  width: '120px',
+                  width: '100px',
                   padding: '2px 8px',
                   fontSize: '0.75rem',
                   backgroundColor: '#d7e7f4',
@@ -344,7 +344,7 @@ const BannerSection = () => {
                 flex: 1,
                 '& .MuiInputBase-root': {
                   height: '32px',
-                  width: '120px',
+                  width: '100px',
                   padding: '2px 8px',
                   fontSize: '0.75rem',
                   backgroundColor: '#d7e7f4',
@@ -378,7 +378,7 @@ const BannerSection = () => {
                 flex: 1,
                 '& .MuiInputBase-root': {
                   height: '32px',
-                  width: '120px',
+                  width: '105px',
                   padding: '2px 8px',
                   fontSize: '0.75rem',
                   backgroundColor: '#d7e7f4',
@@ -473,19 +473,21 @@ const FlightInput = ({
   hideReturnDate,
 }) => (
   <Box flex={1} minWidth={200}>
+    <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+
     <Typography variant="caption" color="textSecondary">
       {label}
     </Typography>
-    <Typography variant="h4" sx={{ color: '#00C853', fontWeight: 'bold' }}>
+    <Typography variant="h4" sx={{ color: '#32d095', fontWeight: 'bold' }}>
       {code}
     </Typography>
+    </Box>
     <Box display="flex" alignItems="center" gap={1} mt={1}>
-      <LocationOnIcon color="success" />
+      <LocationOnIcon sx={{backgroundColor:"#32d095", color:"#fff", width:'10%',}}/>
       <TextField
         size="small"
         fullWidth
         value={location}
-        InputProps={{ readOnly: true }}
         sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
       />
     </Box>
@@ -499,7 +501,6 @@ const FlightInput = ({
           value={date}
           onChange={(e) => onDateChange(e.target.value)}
           sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
-          InputLabelProps={{ shrink: true }}
         />
       </Box>
     )}
@@ -542,7 +543,7 @@ const CenterFlightIcon = () => (
         transform: 'rotate(270deg)',
         width: '100px',
         height: '100px',
-        marginTop: '-30px', // overlapping effect
+        marginTop: '-30px',
         zIndex: 1,
       }}
       xmlns="http://www.w3.org/2000/svg"
@@ -551,6 +552,7 @@ const CenterFlightIcon = () => (
     </svg>
   </Box>
 );
+
 const CenterFlightIconOne = () => (
   <Box
     display="flex"
