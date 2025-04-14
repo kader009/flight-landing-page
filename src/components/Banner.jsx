@@ -63,7 +63,7 @@ const BannerSection = () => {
               date={dates.from1}
               onDateChange={(val) => handleDateChange('from1', val)}
             />
-            <CenterFlightIcon />
+            <CenterFlightIconOne />
             <FlightInput
               label="TO"
               code="CXB"
@@ -91,7 +91,7 @@ const BannerSection = () => {
                 date={dates.from1}
                 onDateChange={(val) => handleDateChange('from1', val)}
               />
-              <CenterFlightIcon />
+              <CenterFlightIconOne />
               <FlightInput
                 label="TO"
                 code="CXB"
@@ -113,7 +113,7 @@ const BannerSection = () => {
                 date={dates.from2}
                 onDateChange={(val) => handleDateChange('from2', val)}
               />
-              <CenterFlightIcon />
+              <CenterFlightIconOne />
               <FlightInput
                 label="TO"
                 code="DAC"
@@ -317,6 +317,10 @@ const BannerSection = () => {
                   '& fieldset': {
                     border: 'none',
                   },
+                  '& .MuiSelect-select': {
+                    textAlign: 'left',
+                    paddingLeft: '1px',
+                  },
                 },
               }}
             >
@@ -347,11 +351,19 @@ const BannerSection = () => {
                   '& fieldset': {
                     border: 'none',
                   },
+                  '& .MuiSelect-select': {
+                    textAlign: 'left',
+                    paddingLeft: '1px',
+                  },
                 },
               }}
             >
               {[0, 1, 2, 3, 4, 5].map((v) => (
-                <MenuItem key={v} value={v}>
+                <MenuItem
+                  key={v}
+                  value={v}
+                  sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+                >
                   {v} CHILD
                 </MenuItem>
               ))}
@@ -373,11 +385,19 @@ const BannerSection = () => {
                   '& fieldset': {
                     border: 'none',
                   },
+                  '& .MuiSelect-select': {
+                    textAlign: 'left',
+                    paddingLeft: '1px',
+                  },
                 },
               }}
             >
               {[0, 1, 2, 3, 4].map((v) => (
-                <MenuItem key={v} value={v}>
+                <MenuItem
+                  key={v}
+                  value={v}
+                  sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+                >
                   {v} INFANT
                 </MenuItem>
               ))}
@@ -390,11 +410,41 @@ const BannerSection = () => {
             fullWidth
             value={flightClass}
             onChange={(e) => setFlightClass(e.target.value)}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              '& .MuiInputBase-root': {
+                height: '32px',
+                padding: '2px 8px',
+                fontSize: '0.75rem',
+                backgroundColor: '#d7e7f4',
+                '& fieldset': {
+                  border: 'none',
+                },
+                '& .MuiSelect-select': {
+                  textAlign: 'left',
+                  paddingLeft: '1px',
+                },
+              },
+            }}
           >
-            <MenuItem value="Economy">Economy</MenuItem>
-            <MenuItem value="Business">Business</MenuItem>
-            <MenuItem value="First-class">First Class</MenuItem>
+            <MenuItem
+              value="Economy"
+              sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+            >
+              Economy
+            </MenuItem>
+            <MenuItem
+              value="Business"
+              sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+            >
+              Business
+            </MenuItem>
+            <MenuItem
+              value="First-class"
+              sx={{ backgroundColor: '#d7e7f4', fontSize: '0.75rem' }}
+            >
+              First Class
+            </MenuItem>
           </TextField>
 
           <Button
@@ -404,10 +454,6 @@ const BannerSection = () => {
             sx={{
               backgroundColor: '#32d095',
               color: '#fff',
-              fontWeight: 'bold',
-              '&:hover': {
-                backgroundColor: '#32d095',
-              },
             }}
           >
             SEARCH FOR FLIGHT
@@ -461,8 +507,73 @@ const FlightInput = ({
 );
 
 const CenterFlightIcon = () => (
-  <Box display="flex" alignItems="center" justifyContent="center" minWidth={60}>
-    <img src="/planeicon.png" alt="plane" style={{ height: 60 }} />
+  <Box
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    position="relative"
+  >
+    {/* Filled Plane */}
+    <svg
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+      style={{
+        fill: '#32d095',
+        transform: 'rotate(90deg)',
+        width: '100px',
+        height: '100px',
+        zIndex: 2,
+      }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
+    </svg>
+
+    {/* Outline Plane */}
+    <svg
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+      style={{
+        fill: 'none',
+        stroke: '#32d095',
+        strokeWidth: 0.6,
+        transform: 'rotate(270deg)',
+        width: '100px',
+        height: '100px',
+        marginTop: '-30px', // overlapping effect
+        zIndex: 1,
+      }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
+    </svg>
+  </Box>
+);
+const CenterFlightIconOne = () => (
+  <Box
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    position="relative"
+  >
+    {/* Filled Plane */}
+    <svg
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+      style={{
+        fill: '#32d095',
+        transform: 'rotate(90deg)',
+        width: '100px',
+        height: '100px',
+        zIndex: 2,
+      }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
+    </svg>
   </Box>
 );
 
