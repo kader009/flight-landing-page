@@ -55,7 +55,7 @@ const BannerSection = () => {
             gap={4}
             flexWrap="wrap"
             justifyContent="center"
-            alignItems='center'
+            alignItems="center"
           >
             <FlightInput
               label="FROM"
@@ -262,7 +262,7 @@ const BannerSection = () => {
                 />
               }
               label={
-                <Typography sx={{ color: '#32d095', fontSize: '0.8rem',}}>
+                <Typography sx={{ color: '#32d095', fontSize: '0.8rem' }}>
                   ROUND-WAY
                 </Typography>
               }
@@ -473,34 +473,115 @@ const FlightInput = ({
   hideReturnDate,
 }) => (
   <Box flex={1} minWidth={200}>
-    <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-
-    <Typography variant="caption" color="textSecondary">
-      {label}
-    </Typography>
-    <Typography variant="h4" sx={{ color: '#32d095', fontWeight: 'bold' }}>
-      {code}
-    </Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <Typography variant="caption" color="textSecondary">
+        {label}
+      </Typography>
+      <Typography variant="h4" sx={{ color: '#32d095', fontWeight: 'bold' }}>
+        {code}
+      </Typography>
     </Box>
-    <Box display="flex" alignItems="center" gap={1} mt={1}>
-      <LocationOnIcon sx={{backgroundColor:"#32d095", color:"#fff", width:'10%',}}/>
+    <Box display="flex" alignItems="center" mt={1}>
+      <Box
+        sx={{
+          backgroundColor: '#32d095',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 40,
+          height: 40,
+          borderTopLeftRadius: 6,
+          borderBottomLeftRadius: 6,
+        }}
+      >
+        <LocationOnIcon sx={{ color: '#fff', fontSize: 20 }} />
+      </Box>
+
       <TextField
         size="small"
         fullWidth
         value={location}
-        sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
+        InputProps={{
+          readOnly: true,
+          sx: {
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+        }}
+        sx={{
+          height: '40px',
+          backgroundColor: '#DCE9F9',
+          borderTopRightRadius: 4,
+          borderBottomRightRadius: 4,
+          input: { padding: '10px 14px', fontSize: '13px', fontWeight: '500' },
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+        }}
       />
     </Box>
     {!hideReturnDate && (
-      <Box display="flex" alignItems="center" gap={1} mt={1}>
-        <CalendarMonthIcon color="success" />
+      <Box display="flex" alignItems="center" mt={1}>
+        <Box
+          sx={{
+            backgroundColor: '#32d095',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 40,
+            height: 40,
+            borderTopLeftRadius: 4,
+            borderBottomLeftRadius: 4,
+          }}
+        >
+          <CalendarMonthIcon sx={{ color: '#fff', fontSize: 20 }} />
+        </Box>
+
         <TextField
           size="small"
           type="date"
           fullWidth
           value={date}
           onChange={(e) => onDateChange(e.target.value)}
-          sx={{ backgroundColor: '#DCE9F9', borderRadius: 1 }}
+          InputProps={{
+            sx: {
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+              },
+            },
+          }}
+          sx={{
+            height: '40px',
+            backgroundColor: '#DCE9F9',
+            borderTopRightRadius: 6,
+            borderBottomRightRadius: 6,
+            input: {
+              padding: '10px 14px',
+              fontSize: '13px',
+              fontWeight: '500',
+            },
+          }}
         />
       </Box>
     )}
