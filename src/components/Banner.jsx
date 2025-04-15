@@ -9,7 +9,7 @@ import {
   RadioGroup,
   Stack,
 } from '@mui/material';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -19,6 +19,14 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 // import { bangladeshAirports } from '../airport';
 
 const BannerSection = () => {
+  const inputRef = useRef();
+
+  const handleIconClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   const [tripType, setTripType] = useState('round-way');
   const [dates, setDates] = useState({
     from1: '2025-04-13',
@@ -536,6 +544,7 @@ const FlightInput = ({
     {!hideReturnDate && (
       <Box display="flex" alignItems="center" mt={1}>
         <Box
+        onClick={handleIconClick}
           sx={{
             backgroundColor: '#32d095',
             display: 'flex',
