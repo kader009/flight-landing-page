@@ -544,7 +544,6 @@ const FlightInput = ({
     {!hideReturnDate && (
       <Box display="flex" alignItems="center" mt={1}>
         <Box
-        onClick={handleIconClick}
           sx={{
             backgroundColor: '#32d095',
             display: 'flex',
