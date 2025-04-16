@@ -200,9 +200,52 @@ const BannerSection = () => {
         >
           {[
             { label: 'FLIGHT', icon: <FlightIcon /> },
-            { label: 'HOTEL', icon: <HotelIcon /> },
-            { label: 'TOUR', icon: <TourIcon /> },
-            { label: 'VISA', icon: <CreditCardIcon /> },
+            {
+              label: 'HOTEL',
+              icon: (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: '#525371', fontSize: '18px' }}
+                >
+                  <path d="M1 11v10h6v-5h2v5h6V11L8 6zm12 8h-2v-5H5v5H3v-6.97l5-3.57 5 3.57zm4-12h2v2h-2zm0 4h2v2h-2zm0 4h2v2h-2z" />
+                  <path d="M10 3v1.97l2 1.43V5h9v14h-4v2h6V3z" />
+                </svg>
+              ),
+            },
+            {
+              label: 'TOUR',
+              icon: (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: '#525371', fontSize: '18px' }}
+                >
+                  <path d="M19.3 16.9c.4-.7.7-1.5.7-2.4 0-2.5-2-4.5-4.5-4.5S11 12 11 14.5s2 4.5 4.5 4.5c.9 0 1.7-.3 2.4-.7l3.2 3.2 1.4-1.4zm-3.8.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5M12 20v2C6.48 22 2 17.52 2 12S6.48 2 12 2c4.84 0 8.87 3.44 9.8 8h-2.07c-.64-2.46-2.4-4.47-4.73-5.41V5c0 1.1-.9 2-2 2h-2v2c0 .55-.45 1-1 1H8v2h2v3H9l-4.79-4.79C4.08 10.79 4 11.38 4 12c0 4.41 3.59 8 8 8"></path>
+                </svg>
+              ),
+            },
+            {
+              label: 'VISA',
+              icon: (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: '#525371', fontSize: '18px' }}
+                >
+                  <path d="M20.19 4H4c-1.1 0-1.99.9-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.81-2-1.81-2m-2.46 9.3-8.86 2.36-1.66-2.88.93-.25 1.26.99 2.39-.64-2.4-4.16 1.4-.38 4.01 3.74 2.44-.65c.51-.14 1.04.17 1.18.68.13.51-.17 1.04-.69 1.19"></path>
+                </svg>
+              ),
+            },
           ].map((tab, index) => (
             <Button
               key={index}

@@ -6,7 +6,7 @@ const Header = () => {
       position="static"
       sx={{ backgroundColor: 'transparent', color: 'black', boxShadow: 'none', mb:5 }}
     >
-      <Toolbar sx={{ justifyContent: 'space-between',margin:'0px 150px 0px 150px' }}>
+      <Toolbar sx={{ justifyContent: 'space-between',margin:'0px 150px 0px 150px', alignContent:'center' }}>
         <Box
           component="img"
           src="/companylogo.webp"
