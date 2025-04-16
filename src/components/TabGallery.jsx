@@ -14,7 +14,7 @@ const TabGallery = () => {
   const handleTabChange = (tab) => setActiveTab(tab);
 
   return (
-    <Box sx={{ maxWidth: '100%', p: 4, backgroundColor: '#F1F5F9' }}>
+    <Box sx={{ maxWidth: '100%', p: 4, }}>
       {/* Top Section */}
       <Box
         sx={{

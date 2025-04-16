@@ -20,7 +20,6 @@ const BannerCarousel = () => {
       sx={{
         width: '100%',
         height: '300px',
-        backgroundColor: '#f2f6fa',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -34,7 +33,7 @@ const BannerCarousel = () => {
         effect='fade'
         modules={[Pagination, Autoplay, EffectFade]}
         style={{
-          width: '85%',
+          width: '80%',
           height: '100%',
           borderRadius: '8px',
           overflow: 'hidden',
